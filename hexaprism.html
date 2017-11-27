@@ -7,14 +7,32 @@
     </head>
     <body>
         <div class="container">
-            <div class="hexaprism" data-grid="2x2" data-animation="columns|rows|shuffle">
+            <button id="animate">Animate</button>
+            <div class="hexaprism" data-grid="3x3" data-animation="columns|rows|shuffle">
                 <div class="item" data-src="hexaprism.jpg">
                 </div>
                 <div class="item" data-src="hexaprism2.jpg">
                 </div>
                 <div class="item" data-src="hexaprism3.jpg">
                 </div>
+                <div class="item" data-src="hexaprism4.jpg">
+                </div>
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                var angle = -90;
+                document.getElementById('animate').addEventListener('click', function() {
+                    var allElements = Array.prototype.slice.call(document.querySelectorAll('.piece'));
+                    for ( let i = 0; i < allElements.length; i++ ) {
+                        // setInterval(function(){
+                            allElements[i].style.transform = allElements[i].style.transform.replace(/rotateY\([-\w]*\)/, '');
+                            allElements[i].style.transform = allElements[i].style.transform + ' rotateY('+angle+'deg)';
+                            // }, i * 1000);
+                    }
+                    angle = angle-90;
+                }, true);
+            }, true);
+        </script>
     </body>
 </html>

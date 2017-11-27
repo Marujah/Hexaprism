@@ -6,33 +6,12 @@
     max-width: 100%;
     width: 960px;
     margin: 0 auto; 
-    perspective: 1000px;
 }
 
 .hexaprism {
     position: relative;
+    margin-top: 100px;
     width: 614px;
     height: 400px;
     transform-style: preserve-3d;
-    transform: translateZ( -177px );
-    transition: transform 0.25s ease-in-out 0s;
-}
-.hexaprism.active {
-    transform: translateZ( -177px ) rotateY(60deg);
-}
-
-.hexaprism .item {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
-.hexaprism .item:first-child {
-    transform: rotateY(0deg) translateZ(177px);
-}
-
-.hexaprism .item:nth-child(2) {
-    transform: rotateY(120deg) translateZ(177px);
-}
-.hexaprism .item:last-child {
-    transform: rotateY(-120deg) translateZ(177px);
 }
