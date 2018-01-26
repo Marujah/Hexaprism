@@ -20,12 +20,14 @@
     }
 
     HexaPrism.prototype.getGrid = function (grid) {
-            if (grid.match(/x/g).length !== 1) return;
+        if (grid.match(/x/g)) {
+            if( grid.match(/x/g).length !== 1) return;
             var colNumber = grid.split('x')[0];
             var rowNumber = grid.split('x')[1];
             return ( !isNaN(colNumber) && !isNaN(rowNumber) )
                     ? { columns: colNumber, rows: rowNumber }
                     : { error: 'Grid format ' + grid + ' is not valid!! Please use this format: (Number)x(Number)' }
+        } else throw('Grid format ' + grid + ' is not valid!! Please use this format: (Number)x(Number)');
     }
     
     
@@ -67,6 +69,9 @@
         console.log(data);
         
         var pieceSize = data.pieceSize;
+        
+        var incircleRadius = pieceSize.width / (2 * Math.tan((180/this.prism.children.length) * Math.PI/180));
+
         this.prism.innerHTML = '';
         
         for ( var i = 0; i < (data.grid.columns * data.grid.rows); i++ ) {
@@ -82,7 +87,7 @@
             newPart.className = 'piece';
             this.addStyles(newPart, {
                 position: "absolute",
-                transform: "translateZ(" + -(data.pieceSize.width / 2) + "px)",
+                transform: "translateZ(" + -(incircleRadius) + "px)",
                 transformStyle: "preserve-3d",
                 width: '100%',
                 height: '100%',
@@ -97,7 +102,7 @@
                     width: data.pieceSize.width+'px',
                     height: data.pieceSize.height+'px',
                     transformStyle: "preserve-3d",
-                    transform: "rotateY("+child.yRotation+") translateZ(" + (data.pieceSize.width / 2) + "px)",
+                    transform: "rotateY("+child.yRotation+") translateZ(" + (incircleRadius) + "px)",
                     background: 'url('+child.backgroundImage+') no-repeat ' + child.positions[i].backgroundPositionX + ' ' + child.positions[i].backgroundPositionY + ' transparent',
                     backfaceVisibility: 'hidden'
                 })

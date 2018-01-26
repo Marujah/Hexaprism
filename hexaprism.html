@@ -7,8 +7,10 @@
     </head>
     <body>
         <div class="container">
-            <button id="animate">Animate</button>
-            <div class="hexaprism" data-grid="3x3" data-animation="columns|rows|shuffle">
+            <button id="animate-left">Animate Left</button>
+            <button id="animate-right">Animate Right</button>
+            <button id="animate-rotate">3D</button>
+            <div class="hexaprism" data-grid="3x3" items="4" data-animation="columns|rows|shuffle">
                 <div class="item" data-src="hexaprism.jpg">
                 </div>
                 <div class="item" data-src="hexaprism2.jpg">
@@ -17,20 +19,37 @@
                 </div>
                 <div class="item" data-src="hexaprism4.jpg">
                 </div>
+                <!-- <div class="item" data-src="hexaprism5.jpg">
+                </div> -->
             </div>
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function(){
-                var angle = -90;
-                document.getElementById('animate').addEventListener('click', function() {
+                var itemsNumber = parseInt(document.querySelector('.hexaprism').getAttribute('items'), 10);
+                var initalAngle = - (360 / itemsNumber);
+                var angle = initalAngle;
+                var xRotation = 0;
+                document.getElementById('animate-left').addEventListener('click', function() {
                     var allElements = Array.prototype.slice.call(document.querySelectorAll('.piece'));
                     for ( let i = 0; i < allElements.length; i++ ) {
-                        // setInterval(function(){
-                            allElements[i].style.transform = allElements[i].style.transform.replace(/rotateY\([-\w]*\)/, '');
-                            allElements[i].style.transform = allElements[i].style.transform + ' rotateY('+angle+'deg)';
-                            // }, i * 1000);
+                        allElements[i].style.transform = allElements[i].style.transform.replace(/rotateY\([-\w]*\)/, '');
+                        allElements[i].style.transform = allElements[i].style.transform + ' rotateY('+angle+'deg)';
                     }
-                    angle = angle-90;
+                    angle += initalAngle;
+                }, true);
+                document.getElementById('animate-right').addEventListener('click', function() {
+                    if (angle + initalAngle === 0) {angle = initalAngle }
+                    var allElements = Array.prototype.slice.call(document.querySelectorAll('.piece'));
+                    for ( let i = 0; i < allElements.length; i++ ) {
+                        allElements[i].style.transform = allElements[i].style.transform.replace(/rotateY\([-\w]*\)/, '');
+                        allElements[i].style.transform = allElements[i].style.transform + ' rotateY('+ angle +'deg)';
+                    }
+                    angle -= initalAngle;
+                }, true);
+                document.getElementById('animate-rotate').addEventListener('click', function() {
+                    let myPrism = document.querySelector('.hexaprism');
+                    xRotation += 10;
+                    myPrism.style.transform = 'rotateX(' + xRotation + 'deg)';
                 }, true);
             }, true);
         </script>
