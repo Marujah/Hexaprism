@@ -6,13 +6,43 @@
     max-width: 100%;
     width: 960px;
     margin: 0 auto; 
-    perspective: 1300px;
+    perspective: 1200px;
 }
 
 .hexaprism {
     position: relative;
-    margin-top: 100px;
+    margin: 100px auto 0;
     width: 614px;
     height: 400px;
     transform-style: preserve-3d;
+    clear: both;
+
+}
+.controls {
+    position: absolute;
+    margin-top: 200px;
+    width: 100%;
+}
+.controls span {
+    cursor: pointer;
+    opacity: 0.2;
+}
+
+.controls span:hover {
+    opacity: 1;
+}
+.controls #animate-left {
+    margin-left: 20px;
+}
+
+.controls #animate-right {
+    float: right;
+}
+
+.hexaprism.threeD section {
+    perspective: none !important;
+}
+
+.hexaprism.threeD section figure {
+    backface-visibility: visible !important;
 }

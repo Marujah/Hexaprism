@@ -7,47 +7,49 @@
     </head>
     <body>
         <div class="container">
-            <button id="animate-left">Animate Left</button>
-            <button id="animate-right">Animate Right</button>
-            <button id="animate-rotate">3D</button>
-            <div class="hexaprism" data-grid="3x3" items="4" data-animation="columns|rows|shuffle">
+            <div class="controls">
+                <span id="animate-left"><img src="arrow-prev.png"></span>
+                <span id="animate-right"><img src="arrow-next.png"></span>
+            </div>
+            <div class="hexaprism" data-grid="3x3" items="3" data-animation="columns|rows|shuffle">
                 <div class="item" data-src="hexaprism.jpg">
                 </div>
                 <div class="item" data-src="hexaprism2.jpg">
                 </div>
                 <div class="item" data-src="hexaprism3.jpg">
                 </div>
-                <div class="item" data-src="hexaprism4.jpg">
-                </div>
+                <!-- <div class="item" data-src="hexaprism4.jpg">
+                </div> -->
                 <!-- <div class="item" data-src="hexaprism5.jpg">
                 </div> -->
             </div>
+            <button id="threed-toggle">3D Toggle</button>
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function(){
                 var itemsNumber = parseInt(document.querySelector('.hexaprism').getAttribute('items'), 10);
                 var initalAngle = - (360 / itemsNumber);
-                var angle = initalAngle;
+                var angle = 0;
                 var xRotation = 0;
                 document.getElementById('animate-left').addEventListener('click', function() {
-                    var allElements = Array.prototype.slice.call(document.querySelectorAll('.piece'));
-                    for ( let i = 0; i < allElements.length; i++ ) {
-                        allElements[i].style.transform = allElements[i].style.transform.replace(/rotateY\([-\w]*\)/, '');
-                        allElements[i].style.transform = allElements[i].style.transform + ' rotateY('+angle+'deg)';
-                    }
-                    angle += initalAngle;
-                }, true);
-                document.getElementById('animate-right').addEventListener('click', function() {
-                    if (angle + initalAngle === 0) {angle = initalAngle }
+                    angle -= initalAngle;
                     var allElements = Array.prototype.slice.call(document.querySelectorAll('.piece'));
                     for ( let i = 0; i < allElements.length; i++ ) {
                         allElements[i].style.transform = allElements[i].style.transform.replace(/rotateY\([-\w]*\)/, '');
                         allElements[i].style.transform = allElements[i].style.transform + ' rotateY('+ angle +'deg)';
                     }
-                    angle -= initalAngle;
                 }, true);
-                document.getElementById('animate-rotate').addEventListener('click', function() {
+                document.getElementById('animate-right').addEventListener('click', function() {
+                    angle += initalAngle;
+                    var allElements = Array.prototype.slice.call(document.querySelectorAll('.piece'));
+                    for ( let i = 0; i < allElements.length; i++ ) {
+                        allElements[i].style.transform = allElements[i].style.transform.replace(/rotateY\([-\w]*\)/, '');
+                        allElements[i].style.transform = allElements[i].style.transform + ' rotateY('+ angle +'deg)';
+                    }
+                }, true);
+                document.getElementById('threed-toggle').addEventListener('click', function() {
                     let myPrism = document.querySelector('.hexaprism');
+                    myPrism.classList.toggle('threeD');
                     xRotation += 10;
                     myPrism.style.transform = 'rotateX(' + xRotation + 'deg)';
                 }, true);
