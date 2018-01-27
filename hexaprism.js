@@ -71,6 +71,7 @@
         var pieceSize = data.pieceSize;
         
         var incircleRadius = pieceSize.width / (2 * Math.tan((180/this.prism.children.length) * Math.PI/180));
+        console.log(this.prism.children.length);
 
         this.prism.innerHTML = '';
         
