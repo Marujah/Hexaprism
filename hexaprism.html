@@ -7,28 +7,30 @@
     </head>
     <body>
         <div class="container">
+            <div class="threed">
+                <div class="threed-toggler">
+                    <input type="checkbox" id="threed-toggle"></input> 
+                    <label for="threed-toggle">3D Toggle</label>
+                </div>
+                <div class="threed-xrotation">
+                    <input type="range" orient="vertical" id="xrotation" min="0" max="90" value ="0"/>
+                    <label for="xrotation">(x)rotation: <span id="xrot">0</span> deg</label>
+                </div>
+            </div>
             <div class="controls">
                 <span id="animate-left"><img src="arrow-prev.png"></span>
                 <span id="animate-right"><img src="arrow-next.png"></span>
             </div>
-            <div class="hexaprism" data-grid="4x4" items="4" data-animation="columns|rows|shuffle">
+            <div class="hexaprism" data-grid="3x3" items="3" data-animation="columns|rows|shuffle">
                 <div class="item" data-src="hexaprism.jpg">
                 </div>
                 <div class="item" data-src="hexaprism2.jpg">
                 </div>
                 <div class="item" data-src="hexaprism3.jpg">
                 </div>
-                <div class="item" data-src="hexaprism4.jpg">
-                </div>
-                <!-- <div class="item" data-src="hexaprism5.jpg">
-                </div>
-                <div class="item" data-src="hexaprism6.jpg">
-                </div> -->
-                <!-- <div class="item" data-src="hexaprism7.jpg">
+                <!-- <div class="item" data-src="hexaprism4.jpg">
                 </div> -->
             </div>
-            <button id="threed-toggle">3D Toggle</button>
-            <input type="range" orient="vertical" id="xrotation" min="0" max="90" value ="0"/>
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function(){
@@ -47,7 +49,6 @@
                 }
                 var itemsNumber = parseInt(document.querySelector('.hexaprism').getAttribute('items'), 10);
                 var initalAngle = - (360 / itemsNumber);
-                console.log('initalAngle', initalAngle);
                 var angle = 0;
                 var xRotation = 0;
                 document.getElementById('animate-left').addEventListener('click', function() {
@@ -81,6 +82,7 @@
                 document.getElementById('xrotation').addEventListener('input', function() {
                     let myPrism = document.querySelector('.hexaprism');
                     myPrism.style.setProperty('--xRotation', this.value);
+                    document.getElementById('xrot').textContent = this.value;
                 }, true);
                 
             }, true);

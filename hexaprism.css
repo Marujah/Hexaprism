@@ -6,19 +6,34 @@
     max-width: 100%;
     width: 960px;
     margin: 0 auto; 
-    perspective: 1200px;
+    perspective: 1000px;
+    perspective-origin: right;
 }
 
 .hexaprism {
     --xRotation: 0;
     position: relative;
-    margin: 100px auto 0;
+    margin: 0 auto;
     width: 614px;
     height: 400px;
     transform-style: preserve-3d;
     clear: both;
     transform: rotateX( calc(var(--xRotation) * 1deg))
 
+}
+.threed {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.threed-toggler {
+    padding: 5px;
+    border-radius: 3px;
+    background: #FF9800;
+}
+.threed-toggler label[for='threed-toggle'] {
+    cursor: pointer;
 }
 .controls {
     position: absolute;
@@ -54,6 +69,6 @@ input[type=range][orient=vertical]
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
     width: 8px;
-    height: 175px;
+    height: 100px;
     padding: 0 5px;
 }

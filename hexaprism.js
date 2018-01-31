@@ -65,13 +65,10 @@
     }
 
     HexaPrism.prototype.generateGridPrism = function (data) {
-        
-        console.log(data);
-        
+              
         var pieceSize = data.pieceSize;
         
         var incircleRadius = pieceSize.width / (2 * Math.tan((180/this.prism.children.length) * Math.PI/180));
-        console.log(this.prism.children.length);
 
         this.prism.innerHTML = '';
         
@@ -112,6 +109,10 @@
             }
             this.prism.appendChild(newSection);
         }
+    }
+
+    HexaPrism.prototype.move = function () {
+        
     }
     
     
